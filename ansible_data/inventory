@@ -1,0 +1,10 @@
+
+[macvlan]
+elitebook ansible_host=192.168.1.105 ansible_user=host ansible_password=342
+
+[macvlan:vars]
+ansible_network_os=vyos
+ansible_python_interpreter=/usr/bin/python3.6
+
+[all]
+test_ip ansible_host=192.168.1.105 ansible_user=host ansible_password=342
