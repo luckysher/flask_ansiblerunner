@@ -1,0 +1,13 @@
+---
+- name: Network Playbook
+  hosts: all
+
+  tasks:
+
+  - debug:
+      msg:
+      - "testing... {{ ansible_host }}"
+
+  - name: jinja test
+    template: src=./interfaces.j2 dest=./test.txt
+
