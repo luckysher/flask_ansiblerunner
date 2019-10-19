@@ -1,11 +1,20 @@
 ---
 - name: Network Playbook
-  hosts: all
+  hosts: dhcp
+  become: yes
 
   tasks:
 
   - debug:
       msg:
       - "testing... {{ ansible_host }}"
+
+  - interfaces_file:
+      dest: /etc/network/interfaces.d/eth1.cfg
+      iface: eth0
+      option: address
+      value: 192.168.1.122
+      backup: yes
+      state: present
 
 
