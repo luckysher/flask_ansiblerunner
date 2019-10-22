@@ -10,11 +10,27 @@
       - "testing... {{ ansible_host }}"
 
   - interfaces_file:
-      dest: /etc/network/interfaces.d/eth1.cfg
-      iface: eth0
+      dest: "{{ interface_file}}"
+      iface: "{{net_interface}}"
       option: address
-      value: 192.168.1.122
+      value: 192.168.1.108
       backup: yes
       state: present
 
+#  - name: Flushing Interface
+#    become: yes
+#    shell: ip addr flush "{{net_interface}}"
+#    become: yes
 
+#  - name: Restarting Network
+#    become: yes
+#    service:
+#      name: networking
+#      state: restarted
+
+  - name: Restarting Network
+    become: yes
+    shell: "{{ item }}"
+    with_items:
+    - ip addr flush "{{net_interface}}"
+    - systemctl restart networking
