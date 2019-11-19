@@ -7,30 +7,17 @@
 
   - debug:
       msg:
-      - "testing... {{ ansible_host }}"
+      - "Updating IP of the host at : {{ ansible_host }}"
+      - "Setting new IP: {{ new_IP }} of the host at : {{ ansible_host }}"
 
   - interfaces_file:
       dest: "{{ interface_file}}"
       iface: "{{net_interface}}"
       option: address
-      value: 192.168.1.108
+      value: '{{ new_IP }}'
       backup: yes
       state: present
 
-#  - name: Flushing Interface
-#    become: yes
-#    shell: ip addr flush "{{net_interface}}"
-#    become: yes
-
-#  - name: Restarting Network
-#    become: yes
-#    service:
-#      name: networking
-#      state: restarted
-
-  - name: Restarting Network
+  - name: Flushing Interface
+    shell: nohup sh -c 'sleep 5; ip addr flush "{{net_interface}}"; systemctl restart networking' &
     become: yes
-    shell: "{{ item }}"
-    with_items:
-    - ip addr flush "{{net_interface}}"
-    - systemctl restart networking
