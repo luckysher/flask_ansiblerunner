@@ -1,6 +1,6 @@
 
 [dhcp]
-elitebook ansible_host=192.168.1.119 ansible_user=root ansible_password=5345
+elitebook ansible_host=192.168.1.130 ansible_user=root ansible_password=123
 
 [dhcp:vars]
 net_interface=wlo1
@@ -9,4 +9,5 @@ ansible_network_os=vyos
 ansible_python_interpreter=/usr/bin/python3.6
 ansible_user=root
 ansible_become=yes
-ansible_become_password=5454
+ansible_become_password=123
+new_IP=192.168.1.140

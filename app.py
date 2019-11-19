@@ -11,6 +11,7 @@ ANSIBLE_FILE = os.path.join(os.getcwd(), "playbook.yml")
 
 @app.route("/test")
 def test():
+
     res = {
         'status': 'Ok',
         'code': 200,
@@ -19,9 +20,6 @@ def test():
 
     r = ansible_runner.run(private_data_dir=os.path.join(os.getcwd(), DATA), playbook=ANSIBLE_FILE)
     print("{}: {}".format(r.status, r.rc))
-    # successful: 0
-    for each_host_event in r.events:
-        print(each_host_event['event'])
     print("Final status:")
     print(r.stats)
 
