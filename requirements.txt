@@ -1,5 +1,5 @@
 ansible==2.8.5
-ansible-runner==1.4.2
+ansible-runner==2.1.1
 cffi==1.13.0
 Click==7.0
 cryptography==2.8
